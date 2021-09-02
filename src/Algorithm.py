@@ -1,11 +1,12 @@
 import Model
 import statsmodels.api as sm
+import Utils
 
 class Algorithm():
 
     def __init__(self, inputDataset, outputDataset):
         self.__result = None
-        self.inputDataSet = sm.add_constant(inputDataset)
+        self.inputDataSet = inputDataset
         self.outputDataSet = outputDataset
 
     def result(self):
@@ -19,37 +20,28 @@ class ForwardStepwiseSelection(Algorithm):
     def result(self):
         return self.__result
 
-    def __pickbestModel(self, models):
-        
-        best_model = None
-        best_value = 0
-
-        for model in models:
-            if model.adjustedR2() > best_value:
-                best_model = model
-
-        return best_model
-
-    def run(self):
+    def run(self, debug=False):
 
         bestModelsForEachIteration = []
-        inputVariablesNames = list(self.inputDataSet.columns.drop('const'))
+        inputVariablesNames = list(self.inputDataSet.columns)
         quantityOfInputVariables = len(inputVariablesNames)
-        selectedVariables = ['const']
+        selectedVariables = []
 
         for iteration in range(quantityOfInputVariables):
 
-            current_iteration_models = []
+            currentIterationModels = []
 
             for inputVariableName in inputVariablesNames:
                 model = Model.LinearRegressionModel(self.inputDataSet[selectedVariables+[inputVariableName]], self.outputDataSet)
-                current_iteration_models.append(model)
+                currentIterationModels.append(model)
             
-            bestCurrentModel = self.__pickbestModel(current_iteration_models)
+            bestCurrentModel = Utils.pickModelWithHighestAdjustedR2(currentIterationModels)
             bestModelsForEachIteration.append(bestCurrentModel)
             newVariableNameToSelect = list(set(model.inputVariablesNames()).difference(set(selectedVariables)))[0]
             selectedVariables.append(newVariableNameToSelect)
             inputVariablesNames.remove(newVariableNameToSelect)
-
+            
+            if debug:
+                print("Iteration: ", iteration, "Selected Variables: ", selectedVariables)
 
         self.__result = bestModelsForEachIteration

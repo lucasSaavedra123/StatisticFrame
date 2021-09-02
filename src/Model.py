@@ -16,7 +16,13 @@ class LinearRegressionModel(Model):
         return LinearRegressionModel(inputDataSet, outputDataSet)
 
     def __init__(self, inputDataSet, outputDataSet):
-        self.inputDataSet = sm.add_constant(inputDataSet)
+
+        if 'const' not in list(inputDataSet.columns):
+            self.inputDataSet = sm.add_constant(inputDataSet)
+        else:
+            self.inputDataSet = inputDataSet
+
+
         self.outputDataSet = outputDataSet
         self.model = sm.OLS(outputDataSet, inputDataSet).fit()
 
@@ -27,4 +33,4 @@ class LinearRegressionModel(Model):
         return self.model.rsquared_adj
 
     def inputVariablesNames(self):
-        return list(self.inputDataSet.columns)
+        return list(self.inputDataSet.columns.drop('const'))
