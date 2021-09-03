@@ -45,5 +45,4 @@ class BackwardStepwiseSelection(Algorithm):
             if debug:
                 print("Iteration: ", iteration, "Removed Variable: ", newVariableNameToDelete, "Model Saved:", bestCurrentModel)
 
-        bestModelsForEachIteration.append(LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet))
         self.__result = bestModelsForEachIteration

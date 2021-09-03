@@ -4,8 +4,6 @@ from Model.LinearRegressionModel import LinearRegressionModel
 import Utils
 import matplotlib.pyplot as plt
 import numpy as np
-import warnings
-warnings.filterwarnings('ignore')
 
 
 class BackwardStepwiseSelectionWithPValue(Algorithm):
@@ -15,7 +13,6 @@ class BackwardStepwiseSelectionWithPValue(Algorithm):
 
     def description(self):
         return "Backward Stepwise Selection with P Value"
-
 
     def run(self, debug=False):
 
@@ -27,9 +24,9 @@ class BackwardStepwiseSelectionWithPValue(Algorithm):
             model = LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet)
             bestModelsForEachIteration.append(model)
             highestPValueVariableName = model.highestPValueVariableName()
-            selectedVariables.remove(highestPValueVariableName)
+            selectedVariables.remove(highestPValueVariableName)         
 
         model = LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet)
-        bestModelsForEachIteration.append(model)           
+        bestModelsForEachIteration.append(model)
 
         self.__result = bestModelsForEachIteration
