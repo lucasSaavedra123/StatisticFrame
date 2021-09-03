@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master.svg?style=svg)](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master)
+
 # StatisticFrame
 <p align="center">
   <img align="center" src="assets/logo.png">
