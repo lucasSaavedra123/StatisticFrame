@@ -6,7 +6,8 @@ def pickModelWithHighestAdjustedR2(models):
 
     for model in models:
         adjustedR2OfCurrentModel = model.adjustedR2()
-        if adjustedR2OfCurrentModel > highestAdjustedR2:
+
+        if adjustedR2OfCurrentModel >= highestAdjustedR2:
             modelWithHighestAdjustedR2 = model
             highestAdjustedR2 = adjustedR2OfCurrentModel
 

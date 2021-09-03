@@ -14,6 +14,13 @@ class LinearRegressionModel(Model):
         outputDataSet = originalDataSet[[variableToPredictName]]
         return LinearRegressionModel(inputDataSet, outputDataSet)
 
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return "Input: (%s), R2: %s" % (self.inputVariablesNames(), self.adjustedR2())
+
     def __init__(self, inputDataSet, outputDataSet):
 
         if 'const' not in list(inputDataSet.columns):
@@ -21,9 +28,8 @@ class LinearRegressionModel(Model):
         else:
             self.inputDataSet = inputDataSet
 
-
         self.outputDataSet = outputDataSet
-        self.model = sm.OLS(outputDataSet, inputDataSet).fit()
+        self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
 
     def predict(self, input):
         return self.model.predict(pd.DataFrame(input))[0]
@@ -36,4 +42,5 @@ class LinearRegressionModel(Model):
 
     def highestPValueVariableName(self):
         p_values = dict(self.model.pvalues)
+        p_values.pop('const')
         return max(p_values.items(), key=operator.itemgetter(1))[0]

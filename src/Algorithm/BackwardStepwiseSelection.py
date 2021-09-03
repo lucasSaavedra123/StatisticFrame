@@ -1,8 +1,10 @@
+from typing import Tuple
 import pathmagic
 from Algorithm.Algorithm import Algorithm
 from Model.LinearRegressionModel import LinearRegressionModel
 import Utils
-
+import matplotlib.pyplot as plt
+import numpy as np
 
 class BackwardStepwiseSelection(Algorithm):
 
@@ -16,29 +18,47 @@ class BackwardStepwiseSelection(Algorithm):
         quantityOfInputVariables = len(inputVariablesNames)
         selectedVariables = inputVariablesNames.copy()
 
-        for iteration in range(quantityOfInputVariables):
+        bestModelsForEachIteration.append(LinearRegressionModel(self.inputDataSet, self.outputDataSet))
+
+        for iteration in range(quantityOfInputVariables-1):
 
             currentIterationModels = []
+            selectedVariables = inputVariablesNames.copy()
 
             for inputVariableName in inputVariablesNames:
-                if len(selectedVariables) == 1:
-                    model = LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet)
-                    currentIterationModels.append(model)
-                else:
-                    selectedVariables.remove(inputVariableName)
-                    model = LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet)
-                    selectedVariables.append(inputVariableName)
-                    currentIterationModels.append(model)
-            
+                selectedVariables.remove(inputVariableName)
+                model = LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet)
+                selectedVariables.append(inputVariableName)
+                currentIterationModels.append(model)
+        
             bestCurrentModel = Utils.pickModelWithHighestAdjustedR2(currentIterationModels)
             bestModelsForEachIteration.append(bestCurrentModel)
-
-            if len(selectedVariables) != 1:
-                newVariableNameToDelete = list(set(inputVariablesNames).difference(set(model.inputVariablesNames())))[0]            
-                selectedVariables.remove(newVariableNameToDelete)
-                inputVariablesNames.remove(newVariableNameToDelete)
+            newVariableNameToDelete = list(set(selectedVariables) - set(model.inputVariablesNames()))[0]           
+            inputVariablesNames.remove(newVariableNameToDelete)
 
             if debug:
-                print("Iteration: ", iteration, "Selected Variables: ", selectedVariables)
+                print("Iteration: ", iteration, "Removed Variable: ", newVariableNameToDelete, "Model Saved:", bestCurrentModel)
 
+        bestModelsForEachIteration.append(LinearRegressionModel(self.inputDataSet[selectedVariables], self.outputDataSet))
         self.__result = bestModelsForEachIteration
+
+    def plot(self):
+        self.run()
+        plt.clf()
+
+        plt.xlabel("Iterations")
+        plt.ylabel("R2")
+        plt.title("Backward Stepwise Selection")
+
+        iterations = np.arange(len(self.result()))
+
+        R2Values = []
+
+        for model in self.result():
+            R2Values.append(model.adjustedR2())
+
+        R2Values = np.array(R2Values)
+
+        plt.scatter(iterations, R2Values)
+        plt.plot(iterations, R2Values)
+        plt.show()

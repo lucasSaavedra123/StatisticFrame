@@ -13,3 +13,6 @@ class Algorithm():
 
     def run(self):
         pass
+
+    def plot(self):
+        pass
