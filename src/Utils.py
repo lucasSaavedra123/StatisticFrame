@@ -35,10 +35,10 @@ def addDummyVariablesToDataSet(dataframe):
     return dataframe
 
 
-def powerset(s):
-    x = len(s)
+def powerset(set):
+    setLength = len(set)
     set = []
-    for i in range(1 << x):
-        set.append([s[j] for j in range(x) if (i & (1 << j))])
+    for i in range(1 << setLength):
+        set.append([set[j] for j in range(setLength) if (i & (1 << j))])
 
     return set

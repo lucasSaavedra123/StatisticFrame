@@ -6,9 +6,7 @@ from Algorithm.BackwardStepwiseSelectionWithPValue import (
 from Algorithm.BestModelSelection import BestModelSelection
 import Utils
 import pandas as pd
-import matplotlib.pyplot as plt
 import warnings
-
 warnings.filterwarnings("ignore")
 
 originalDataSet = pd.read_csv("src/tests/insurance.csv")
