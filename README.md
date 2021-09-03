@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master.svg?style=svg)](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master)
+[![CircleCI](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master.svg?style=svg&circle-token=3e1b183192bfdacd4e0ee4dfbd15864c1d0a7dbe)](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master)
 
 # StatisticFrame
 <p align="center">
