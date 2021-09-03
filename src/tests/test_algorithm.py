@@ -1,5 +1,6 @@
+import pathmagic
 import unittest
-from Algorithm import ForwardStepwiseSelection
+from Algorithm.ForwardStepwiseSelection import ForwardStepwiseSelection
 import Utils
 import pandas as pd
 

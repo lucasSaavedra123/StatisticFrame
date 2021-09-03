@@ -1,3 +1,4 @@
+import pathmagic
 import pandas as pd
 import statsmodels.api as sm
 import numpy as np

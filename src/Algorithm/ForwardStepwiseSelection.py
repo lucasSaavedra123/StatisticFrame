@@ -1,19 +1,8 @@
-import Model
-import statsmodels.api as sm
+import pathmagic
+from Algorithm.Algorithm import Algorithm
+from Model.LinearRegressionModel import LinearRegressionModel
 import Utils
 
-class Algorithm():
-
-    def __init__(self, inputDataset, outputDataset):
-        self.__result = None
-        self.inputDataSet = inputDataset
-        self.outputDataSet = outputDataset
-
-    def result(self):
-        return self.__result
-
-    def run(self):
-        pass
 
 class ForwardStepwiseSelection(Algorithm):
 
@@ -32,7 +21,7 @@ class ForwardStepwiseSelection(Algorithm):
             currentIterationModels = []
 
             for inputVariableName in inputVariablesNames:
-                model = Model.LinearRegressionModel(self.inputDataSet[selectedVariables+[inputVariableName]], self.outputDataSet)
+                model = LinearRegressionModel(self.inputDataSet[selectedVariables+[inputVariableName]], self.outputDataSet)
                 currentIterationModels.append(model)
             
             bestCurrentModel = Utils.pickModelWithHighestAdjustedR2(currentIterationModels)

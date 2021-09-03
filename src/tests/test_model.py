@@ -1,5 +1,6 @@
+import pathmagic
 import unittest
-from Model import LinearRegressionModel
+from Model.LinearRegressionModel import LinearRegressionModel
 
 
 class TestModels(unittest.TestCase):
