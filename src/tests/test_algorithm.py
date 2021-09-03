@@ -16,33 +16,22 @@ class TestAlgorithm(unittest.TestCase):
         self.outputDataSet = originalDataSet[['charges']]
         self.inputDataSet = originalDataSet.drop('charges', 1)
 
-    def test_forwards_stepwise_selection(self):
-        algorithm = ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet)
+    def assertAlgortihmThrowsExpectedOutput(self, algorithm, expectedOutput):
         algorithm.run()
         model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
-
         result = model.inputVariablesNames().sort()
-        expectedResult = ['smoker_no', 'smoker_yes', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest'].sort()
+        expectedResult = expectedOutput.sort()
         self.assertEqual(expectedResult, result)
+
+    def test_forwards_stepwise_selection(self):
+        self.assertAlgortihmThrowsExpectedOutput(ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet), ['smoker_no', 'smoker_yes', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest'])
 
     def test_backwards_stepwise_selection(self):
-        algorithm = BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet)
-        algorithm.run()
-        model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
-
-        result = model.inputVariablesNames().sort()
-        expectedResult = ['region_southwest', 'age', 'children', 'region_southeast', 'bmi', 'smoker_yes', 'const'].sort()
-        self.assertEqual(expectedResult, result)
+        self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet), ['region_southwest', 'age', 'children', 'region_southeast', 'bmi', 'smoker_yes', 'const'])
 
     def test_backwards_stepwise_selection_with_p_value(self):
-        algorithm = BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet)
-        algorithm.run()
-        model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
+        self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), ['age', 'bmi', 'children', 'smoker_no', 'smoker_yes', 'region_southeast', 'region_southwest'])
 
-        result = model.inputVariablesNames().sort()
-        expectedResult = ['age', 'bmi', 'children', 'smoker_no', 'smoker_yes', 'region_southeast', 'region_southwest'].sort()
-        self.assertEqual(expectedResult, result)
-  
 
 if __name__ == '__main__':
     unittest.main()
