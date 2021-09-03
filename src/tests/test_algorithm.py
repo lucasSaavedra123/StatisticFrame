@@ -5,16 +5,19 @@ from Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
 from Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
 import Utils
 import pandas as pd
+import warnings
+warnings.filterwarnings('ignore')
 
 class TestAlgorithm(unittest.TestCase):
 
-    def test_forwards_stepwise_selection(self):
-
+    @classmethod
+    def setUpClass(self):
         originalDataSet = pd.read_csv('insurance-ready.csv')
-        outputDataSet = originalDataSet[['charges']]
-        inputDataSet = originalDataSet.drop('charges', 1)
+        self.outputDataSet = originalDataSet[['charges']]
+        self.inputDataSet = originalDataSet.drop('charges', 1)
 
-        algorithm = ForwardStepwiseSelection(inputDataSet, outputDataSet)
+    def test_forwards_stepwise_selection(self):
+        algorithm = ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet)
         algorithm.run()
         model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
 
@@ -23,12 +26,7 @@ class TestAlgorithm(unittest.TestCase):
         self.assertEqual(expectedResult, result)
 
     def test_backwards_stepwise_selection(self):
-
-        originalDataSet = pd.read_csv('insurance-ready.csv')
-        outputDataSet = originalDataSet[['charges']]
-        inputDataSet = originalDataSet.drop('charges', 1)
-
-        algorithm = BackwardStepwiseSelection(inputDataSet, outputDataSet)
+        algorithm = BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet)
         algorithm.run()
         model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
 
@@ -37,12 +35,7 @@ class TestAlgorithm(unittest.TestCase):
         self.assertEqual(expectedResult, result)
 
     def test_backwards_stepwise_selection_with_p_value(self):
-
-        originalDataSet = pd.read_csv('insurance-ready.csv')
-        outputDataSet = originalDataSet[['charges']]
-        inputDataSet = originalDataSet.drop('charges', 1)
-
-        algorithm = BackwardStepwiseSelectionWithPValue(inputDataSet, outputDataSet)
+        algorithm = BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet)
         algorithm.run()
         model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
 
