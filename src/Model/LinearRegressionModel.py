@@ -1,12 +1,10 @@
 import pathmagic
+from Model.Model import Model
 import pandas as pd
 import statsmodels.api as sm
 import numpy as np
-
-
-class Model():
-    pass
-
+import copy
+import operator
 
 class LinearRegressionModel(Model):
     @classmethod
@@ -35,3 +33,7 @@ class LinearRegressionModel(Model):
 
     def inputVariablesNames(self):
         return list(self.inputDataSet.columns.drop('const'))
+
+    def highestPValueVariableName(self):
+        p_values = dict(self.model.pvalues)
+        return max(p_values.items(), key=operator.itemgetter(1))[0]
