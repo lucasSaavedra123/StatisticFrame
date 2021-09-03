@@ -1,6 +1,7 @@
 from Algorithm.ForwardStepwiseSelection import ForwardStepwiseSelection
 from Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
 from Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
+from Algorithm.BestModelSelection import BestModelSelection
 import Utils
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -26,7 +27,7 @@ input = {
     "region_southwest": [0]
 }
 
-algorithms = [ ForwardStepwiseSelection(inputDataSet, outputDataSet), BackwardStepwiseSelection(inputDataSet, outputDataSet), BackwardStepwiseSelectionWithPValue(inputDataSet, outputDataSet)]
+algorithms = [ ForwardStepwiseSelection(inputDataSet, outputDataSet), BackwardStepwiseSelection(inputDataSet, outputDataSet), BackwardStepwiseSelectionWithPValue(inputDataSet, outputDataSet), BestModelSelection(inputDataSet, outputDataSet)]
 
 for algorithm in algorithms:
     algorithm.plot()
