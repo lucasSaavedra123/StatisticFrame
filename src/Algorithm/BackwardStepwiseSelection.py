@@ -11,6 +11,9 @@ class BackwardStepwiseSelection(Algorithm):
     def result(self):
         return self.__result
 
+    def description(self):
+        return "Backward Stepwise Selection"
+
     def run(self, debug=False):
 
         bestModelsForEachIteration = []

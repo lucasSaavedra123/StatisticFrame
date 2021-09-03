@@ -12,6 +12,9 @@ class ForwardStepwiseSelection(Algorithm):
     def result(self):
         return self.__result
 
+    def description(self):
+        return "Forward Stepwise Selection"
+
     def run(self, debug=False):
 
         bestModelsForEachIteration = []

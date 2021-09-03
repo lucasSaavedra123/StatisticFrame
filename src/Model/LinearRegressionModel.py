@@ -32,7 +32,18 @@ class LinearRegressionModel(Model):
         self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
 
     def predict(self, input):
-        return self.model.predict(pd.DataFrame(input))[0]
+        
+        realInput = {'const':1}
+        
+
+        for variableName in self.inputVariablesNames():
+            
+            value = input.get(variableName)
+
+            if value is not None:
+                realInput[variableName] = value
+
+        return self.model.predict(pd.DataFrame(realInput))[0]
 
     def adjustedR2(self):
         return self.model.rsquared_adj

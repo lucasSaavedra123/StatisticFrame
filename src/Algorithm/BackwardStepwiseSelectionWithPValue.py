@@ -11,6 +11,10 @@ class BackwardStepwiseSelectionWithPValue(Algorithm):
     def result(self):
         return self.__result
 
+    def description(self):
+        return "Backward Stepwise Selection with P Value"
+
+
     def run(self, debug=False):
 
         bestModelsForEachIteration = []
