@@ -1,5 +1,8 @@
 import pathmagic
 import Utils
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 class Algorithm():
 
@@ -19,3 +22,24 @@ class Algorithm():
 
     def __str__(self):
         return self.description()
+
+    def plot(self):
+        self.run()
+        plt.clf()
+
+        plt.xlabel("Iterations")
+        plt.ylabel("R2")
+        plt.title(self.description())
+
+        iterations = np.arange(len(self.result()))
+
+        R2Values = []
+
+        for model in self.result():
+            R2Values.append(model.adjustedR2())
+
+        R2Values = np.array(R2Values)
+
+        plt.scatter(iterations, R2Values)
+        plt.plot(iterations, R2Values)
+        plt.show()

@@ -30,7 +30,6 @@ class ForwardStepwiseSelection(Algorithm):
                 model = LinearRegressionModel(self.inputDataSet[selectedVariables+[inputVariableName]], self.outputDataSet)
                 currentIterationModels.append(model)
             
-            
             bestCurrentModel = Utils.pickModelWithHighestAdjustedR2(currentIterationModels)
             bestModelsForEachIteration.append(bestCurrentModel)
             newVariableNameToSelect = list(set(bestCurrentModel.inputVariablesNames()).difference(set(selectedVariables)))[0]
@@ -41,25 +40,3 @@ class ForwardStepwiseSelection(Algorithm):
                 print("Iteration: ", iteration, "Selected Variables: ", selectedVariables)
 
         self.__result = bestModelsForEachIteration
-
-
-    def plot(self):
-        self.run()
-        plt.clf()
-
-        plt.xlabel("Iterations")
-        plt.ylabel("R2")
-        plt.title("Forward Stepwise Selection")
-
-        iterations = np.arange(len(self.result()))
-
-        R2Values = []
-
-        for model in self.result():
-            R2Values.append(model.adjustedR2())
-
-        R2Values = np.array(R2Values)
-
-        plt.scatter(iterations, R2Values)
-        plt.plot(iterations, R2Values)
-        plt.show()
