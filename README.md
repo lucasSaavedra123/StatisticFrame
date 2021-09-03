@@ -10,7 +10,7 @@ Dockerization is a great idea. We could develop an API to be worldwide used for 
 
 # FAQ
 
-## How do I run test?
+## How do I run tests?
 
 Move to `tests` folder and type
 
