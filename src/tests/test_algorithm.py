@@ -26,10 +26,6 @@ class TestAlgorithm(unittest.TestCase):
     def assertAlgortihmHasExpectedNumberOfMOdelsCreated(self, algorithm, expectedNumberOfMOdelsCreated):
         algorithm.run()
         models = algorithm.result()
-
-        for model in models:
-            print(model)
-
         self.assertEqual(len(models), expectedNumberOfMOdelsCreated)
 
     def test_forwards_stepwise_selection(self):
