@@ -3,11 +3,6 @@ import pathmagic
 from Algorithm.Algorithm import Algorithm
 from Model.LinearRegressionModel import LinearRegressionModel
 import Utils
-import matplotlib.pyplot as plt
-import numpy as np
-import warnings
-warnings.filterwarnings('ignore')
-
 
 class BackwardStepwiseSelection(Algorithm):
 
