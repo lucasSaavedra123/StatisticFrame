@@ -2,8 +2,7 @@ import pathmagic
 from Model.Model import Model
 import pandas as pd
 import statsmodels.api as sm
-import numpy as np
-import copy
+import Utils
 import operator
 
 class LinearRegressionModel(Model):
@@ -22,11 +21,11 @@ class LinearRegressionModel(Model):
         return "Input: (%s), R2: %s" % (self.inputVariablesNames(), self.adjustedR2())
 
     def __init__(self, inputDataSet, outputDataSet):
+        self.__originalVariablesNames = list(inputDataSet.columns)
+        self.inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
 
-        if 'const' not in list(inputDataSet.columns):
-            self.inputDataSet = sm.add_constant(inputDataSet)
-        else:
-            self.inputDataSet = inputDataSet
+        if 'const' not in list(self.inputDataSet):
+            self.inputDataSet = sm.add_constant(self.inputDataSet)
 
         self.outputDataSet = outputDataSet
         self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
@@ -36,12 +35,21 @@ class LinearRegressionModel(Model):
         realInput = {'const':1}
         
 
-        for variableName in self.inputVariablesNames():
+        for variableName in self.__originalVariablesNames:
             
             value = input.get(variableName)
 
             if value is not None:
-                realInput[variableName] = value
+                value = value[0]
+
+                if isinstance(value, str):
+                    for auxiliarVariableName in self.inputVariablesNames():
+                        if variableName in auxiliarVariableName:
+                            realInput[auxiliarVariableName] = [1]
+                        else:
+                            realInput[auxiliarVariableName] = [0]
+                else:
+                    realInput[variableName] = [value]
 
         return self.model.predict(pd.DataFrame(realInput))[0]
 

@@ -8,10 +8,10 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-originalDataSet = pd.read_csv('tests/insurance-ready.csv')
+originalDataSet = pd.read_csv('src/tests/insurance.csv')
 outputDataSet = originalDataSet[['charges']]
 inputDataSet = originalDataSet.drop('charges', axis=1)
-
+inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
 input = {
     "age": [25],
     "sex_female": [0],

@@ -5,16 +5,16 @@ from Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
 from Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
 import Utils
 import pandas as pd
-import warnings
-warnings.filterwarnings('ignore')
+
 
 class TestAlgorithm(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        originalDataSet = pd.read_csv('insurance-ready.csv')
+        originalDataSet = pd.read_csv('insurance.csv')
         self.outputDataSet = originalDataSet[['charges']]
         self.inputDataSet = originalDataSet.drop('charges', 1)
+        self.inputDataSet = Utils.addDummyVariablesToDataSet(self.inputDataSet)
 
     def assertAlgortihmThrowsExpectedOutput(self, algorithm, expectedOutput):
         algorithm.run()
@@ -33,22 +33,22 @@ class TestAlgorithm(unittest.TestCase):
         self.assertEqual(len(models), expectedNumberOfMOdelsCreated)
 
     def test_forwards_stepwise_selection(self):
-        self.assertAlgortihmThrowsExpectedOutput(ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet), ['smoker_no', 'smoker_yes', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest'])
+        self.assertAlgortihmThrowsExpectedOutput(ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet), ['smoker_no', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest'])
 
     def test_forwards_stepwise_selection_has_ten_models_created(self):
-        self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet), 11)
+        self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(ForwardStepwiseSelection(self.inputDataSet, self.outputDataSet), 8)
 
     def test_backwards_stepwise_selection(self):
-        self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet), ['region_southwest', 'age', 'children', 'region_southeast', 'bmi', 'smoker_yes', 'const'])
+        self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet), ['bmi', 'children', 'smoker_no', 'region_northeast', 'region_northwest', 'age'])
 
     def test_backwards_stepwise_selection_has_ten_models_created(self):
-        self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet), 11)
+        self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(BackwardStepwiseSelection(self.inputDataSet, self.outputDataSet), 8)
 
     def test_backwards_stepwise_selection_with_p_value(self):
-        self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), ['age', 'bmi', 'children', 'smoker_no', 'smoker_yes', 'region_southeast', 'region_southwest'])
+        self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), ['age', 'bmi', 'children', 'smoker_no', 'region_northeast', 'region_northwest'])
 
     def test_backwards_stepwise_selection_with_p_value_has_ten_models_created(self):
-            self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), 11)
+            self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), 8)
 
 
 if __name__ == '__main__':
