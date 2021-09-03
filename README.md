@@ -8,5 +8,13 @@ First, we need to install all required libraries. To do that, type:
 
 Dockerization is a great idea. We could develop an API to be worldwide used for cloud services and stuff like that. But by now, it's used in this way.
 
+# FAQ
+
+## How do I run test?
+
+Move to `tests` folder and type
+
+    python -m unittest discover -s . -p 'test_*.py'
+
 # Contribution
 To contribute, create a branch for yourself and then submit a pull request. Please, do testing. The pull will not be approved unless tests are added. However, if testing is not required, it could be merged into master, but only if it is properly justified.
