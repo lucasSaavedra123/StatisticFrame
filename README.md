@@ -20,5 +20,6 @@ Move to `tests` folder and type
 To contribute, create a branch for yourself and then submit a pull request. Please, do testing. The pull will not be approved unless tests are added. However, if testing is not required, it could be merged into master, but only if it is properly justified.
 
 # Thanks to
-
-![UCA Logo](assets/logo_uca.png)
+<p align="center">
+  <img align="center" src="assets/logo_uca.png">
+</p>
