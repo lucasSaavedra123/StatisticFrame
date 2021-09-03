@@ -14,10 +14,12 @@ def pickModelWithHighestAdjustedR2(models):
 
     return modelWithHighestAdjustedR2
 
+
 def categoricalVariablesNamesFromDataset(dataset):
     cols = dataset.columns
     num_cols = dataset._get_numeric_data().columns
     return list(set(cols) - set(num_cols))
+
 
 def addDummyVariablesToDataSet(dataframe):
 
@@ -29,8 +31,9 @@ def addDummyVariablesToDataSet(dataframe):
         dataframe = dataframe.drop([categoricalVariableName], axis=1)
         for index in range(len(new_columns.columns)-1):
             dataframe.insert(column_location + index, new_columns.columns[index], new_columns[[new_columns.columns[index]]])
-    
+
     return dataframe
+
 
 def powerset(s):
     x = len(s)

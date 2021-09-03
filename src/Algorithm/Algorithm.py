@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-class Algorithm():
+class Algorithm:
 
     def __init__(self, inputDataset, outputDataset):
         self.__result = None
@@ -27,8 +27,8 @@ class Algorithm():
         self.run()
         plt.clf()
 
-        plt.xlabel("Iterations")
-        plt.ylabel("R2")
+        plt.xlabel('Iterations')
+        plt.ylabel('R2')
         plt.title(self.description())
 
         iterations = np.arange(len(self.result()))

@@ -3,13 +3,14 @@ from Algorithm.Algorithm import Algorithm
 from Model.LinearRegressionModel import LinearRegressionModel
 import Utils
 
+
 class BestModelSelection(Algorithm):
 
     def result(self):
         return self.__result
 
     def description(self):
-        return "Best Model Selection"
+        return 'Best Model Selection'
 
     def run(self, debug=False):
 

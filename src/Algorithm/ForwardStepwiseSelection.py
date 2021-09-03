@@ -1,12 +1,7 @@
-from numpy.core.arrayprint import printoptions
 import pathmagic
+import Utils
 from Algorithm.Algorithm import Algorithm
 from Model.LinearRegressionModel import LinearRegressionModel
-import Utils
-import matplotlib.pyplot as plt
-import numpy as np
-import warnings
-warnings.filterwarnings('ignore')
 
 
 class ForwardStepwiseSelection(Algorithm):
@@ -15,7 +10,7 @@ class ForwardStepwiseSelection(Algorithm):
         return self.__result
 
     def description(self):
-        return "Forward Stepwise Selection"
+        return 'Forward Stepwise Selection'
 
     def run(self, debug=False):
 
@@ -29,16 +24,16 @@ class ForwardStepwiseSelection(Algorithm):
             currentIterationModels = []
 
             for inputVariableName in inputVariablesNames:
-                model = LinearRegressionModel(self.inputDataSet[selectedVariables+[inputVariableName]], self.outputDataSet)
+                model = LinearRegressionModel(self.inputDataSet[selectedVariables + [inputVariableName]], self.outputDataSet)
                 currentIterationModels.append(model)
-            
+
             bestCurrentModel = Utils.pickModelWithHighestAdjustedR2(currentIterationModels)
             bestModelsForEachIteration.append(bestCurrentModel)
             newVariableNameToSelect = list(set(bestCurrentModel.inputVariablesNames()).difference(set(selectedVariables)))[0]
             selectedVariables.append(newVariableNameToSelect)
             inputVariablesNames.remove(newVariableNameToSelect)
-            
+
             if debug:
-                print("Iteration: ", iteration, "Selected Variables: ", selectedVariables)
+                print('Iteration: ', iteration, 'Selected Variables: ', selectedVariables)
 
         self.__result = bestModelsForEachIteration

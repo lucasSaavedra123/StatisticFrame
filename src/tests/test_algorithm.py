@@ -44,7 +44,7 @@ class TestAlgorithm(unittest.TestCase):
         self.assertAlgortihmThrowsExpectedOutput(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), ['age', 'bmi', 'children', 'smoker_no', 'region_northeast', 'region_northwest'])
 
     def test_backwards_stepwise_selection_with_p_value_has_ten_models_created(self):
-            self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), 8)
+        self.assertAlgortihmHasExpectedNumberOfMOdelsCreated(BackwardStepwiseSelectionWithPValue(self.inputDataSet, self.outputDataSet), 8)
 
 
 if __name__ == '__main__':

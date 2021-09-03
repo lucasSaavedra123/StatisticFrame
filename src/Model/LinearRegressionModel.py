@@ -5,6 +5,7 @@ import statsmodels.api as sm
 import Utils
 import operator
 
+
 class LinearRegressionModel(Model):
     @classmethod
     def fromDataSetFileToPredictVariable(self, filename, predictorsVariablesNames, variableToPredictName):
@@ -12,7 +13,6 @@ class LinearRegressionModel(Model):
         inputDataSet = originalDataSet[predictorsVariablesNames]
         outputDataSet = originalDataSet[[variableToPredictName]]
         return LinearRegressionModel(inputDataSet, outputDataSet)
-
 
     def __repr__(self):
         return self.__str__()
@@ -31,12 +31,10 @@ class LinearRegressionModel(Model):
         self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
 
     def predict(self, input):
-        
-        realInput = {'const':1}
-        
+        realInput = {'const': 1}
 
         for variableName in self.__originalVariablesNames:
-            
+
             value = input.get(variableName)
 
             if value is not None:
