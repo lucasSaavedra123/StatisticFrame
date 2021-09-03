@@ -17,6 +17,7 @@ class BestModelSelection(Algorithm):
         models = []
         inputVariablesNames = list(self.inputDataSet.columns)
         combinationsOfVariables = Utils.powerset(inputVariablesNames)
+        combinationsOfVariables.remove([])
 
         for combinationOfVariables in combinationsOfVariables:
             model = LinearRegressionModel(self.inputDataSet[combinationOfVariables], self.outputDataSet)

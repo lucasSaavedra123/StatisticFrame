@@ -7,7 +7,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
 
-originalDataSet = pd.read_csv("src/tests/insurance.csv")
+originalDataSet = pd.read_csv("tests/insurance.csv")
 outputDataSet = originalDataSet[["charges"]]
 inputDataSet = originalDataSet.drop("charges", axis=1)
 inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
