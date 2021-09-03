@@ -7,6 +7,18 @@ import operator
 
 
 class LinearRegressionModel(Model):
+    @classmethod
+    def fromDataSetFileToPredictVariable(self, filename, predictorsVariablesNames, variableToPredictName):
+        originalDataSet = pd.read_csv(filename)
+        inputDataSet = originalDataSet[predictorsVariablesNames]
+        outputDataSet = originalDataSet[[variableToPredictName]]
+        return LinearRegressionModel(inputDataSet, outputDataSet)
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return "Input: (%s), R2: %s" % (self.inputVariablesNames(), self.adjustedR2())
 
     def __init__(self, inputDataSet, outputDataSet):
         self.__originalVariablesNames = list(inputDataSet.columns)
