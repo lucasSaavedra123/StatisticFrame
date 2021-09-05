@@ -10,7 +10,7 @@ class LinearRegressionModel(Model):
     @classmethod
     def fromDataSetFileToPredictVariable(self, filename, predictorsVariablesNames, variableToPredictName):
         originalDataSet = pd.read_csv(filename)
-        inputDataSet = originalDataSet[predictorsVariablesNames]
+        inputDataSet = Utils.addDummyVariablesToDataSet(originalDataSet[predictorsVariablesNames])
         outputDataSet = originalDataSet[[variableToPredictName]]
         return LinearRegressionModel(inputDataSet, outputDataSet)
 
@@ -21,7 +21,6 @@ class LinearRegressionModel(Model):
         return "Input: (%s), R2: %s" % (self.inputVariablesNames(), self.adjustedR2())
 
     def __init__(self, inputDataSet, outputDataSet):
-        self.__originalVariablesNames = list(inputDataSet.columns)
         self.inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
 
         if 'const' not in list(self.inputDataSet):
@@ -32,23 +31,10 @@ class LinearRegressionModel(Model):
 
     def predict(self, input):
         realInput = {'const': 1}
-
-        for variableName in self.__originalVariablesNames:
-
+        for variableName in self.inputVariablesNames():
             value = input.get(variableName)
-
             if value is not None:
-                value = value[0]
-
-                if isinstance(value, str):
-                    for auxiliarVariableName in self.inputVariablesNames():
-                        if variableName in auxiliarVariableName:
-                            realInput[auxiliarVariableName] = [1]
-                        else:
-                            realInput[auxiliarVariableName] = [0]
-                else:
-                    realInput[variableName] = [value]
-
+                realInput[variableName] = value
         return self.model.predict(pd.DataFrame(realInput))[0]
 
     def adjustedR2(self):

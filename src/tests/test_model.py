@@ -1,5 +1,7 @@
 import pathmagic
 import unittest
+import Utils
+import pandas as pd
 from Model.LinearRegressionModel import LinearRegressionModel
 
 
@@ -9,7 +11,14 @@ class TestModels(unittest.TestCase):
     def setUpClass(self):
         self.exampleOneLinearModel = LinearRegressionModel.fromDataSetFileToPredictVariable('exampleOne.csv', ['X'], 'Y')
         self.exampleTwoLinearModel = LinearRegressionModel.fromDataSetFileToPredictVariable('exampleTwo.csv', ['X'], 'Y')
-        self.insuranceModel = LinearRegressionModel.fromDataSetFileToPredictVariable('insurance.csv', ['smoker', 'bmi', 'children', 'region'], 'charges')
+
+        originalDataSet = pd.read_csv("insurance.csv")
+        outputDataSet = originalDataSet[["charges"]]
+        inputDataSet = originalDataSet.drop("charges", axis=1)
+        inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
+        inputDataSet = inputDataSet[['smoker_no', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest']]
+
+        self.insuranceModel = LinearRegressionModel(inputDataSet, outputDataSet)
 
     def test_a_simple_linear_regression_model_predicts_two(self):
         prediction = self.exampleOneLinearModel.predict({'X': [2]})
@@ -25,16 +34,23 @@ class TestModels(unittest.TestCase):
         self.assertEqual(round(prediction, 1), 1.7)
 
     def test_predict_charges_for_northeast_person(self):
+
         input = {
-            'smoker': ['yes'],
-            'age': [25],
-            'bmi': [26.3],
-            'children': [0],
-            'region': ['northeast'],
-            }
+            "age": [25],
+            "sex_female": [0],
+            "sex_male": [1],
+            "bmi": [26.3],
+            "children": [0],
+            "smoker_no": [0],
+            "smoker_yes": [1],
+            "region_northeast": [1],
+            "region_northwest": [0],
+            "region_southeast": [0],
+            "region_southwest": [0]
+        }
 
         prediction = self.insuranceModel.predict(input)
-        self.assertEqual(round(prediction, 0), 19824)
+        self.assertEqual(round(prediction, 0), 27175)
 
 
 if __name__ == '__main__':
