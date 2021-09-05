@@ -5,7 +5,9 @@
   <img align="center" src="assets/logo.png">
 </p>
 StatisticFrame is a set of classes and tools that use most used machine learning and statistics libraries. Why? We take advantage of OOP concepts that those libraries don't. Use it. It's very comfortable and declarative.
+
 # Requirements
+
 What we need? Just Python 3.
 First, we need to install all required libraries. To do that, type:
 
