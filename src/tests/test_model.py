@@ -11,10 +11,10 @@ class TestModels(unittest.TestCase):
     def setUpClass(self):
         self.exampleOneLinearModel = LinearRegressionModel.fromDataSetFileToPredictVariable('exampleOne.csv', ['X'], 'Y')
         self.exampleTwoLinearModel = LinearRegressionModel.fromDataSetFileToPredictVariable('exampleTwo.csv', ['X'], 'Y')
-        
+
         originalDataSet = pd.read_csv("insurance.csv")
         outputDataSet = originalDataSet[["charges"]]
-        inputDataSet = originalDataSet.drop("charges", axis=1)        
+        inputDataSet = originalDataSet.drop("charges", axis=1)
         inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
         inputDataSet = inputDataSet[['smoker_no', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest']]
 
