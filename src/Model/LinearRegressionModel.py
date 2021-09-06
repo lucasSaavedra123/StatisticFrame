@@ -27,7 +27,7 @@ class LinearRegressionModel(Model):
         if 'const' not in list(self.inputDataSet):
             self.model = sm.OLS(self.outputDataSet, sm.add_constant(self.inputDataSet)).fit()
         else:
-            self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()            
+            self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
 
     def predict(self, input):
         realInput = {'const': 1}

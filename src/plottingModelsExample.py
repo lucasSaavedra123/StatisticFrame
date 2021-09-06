@@ -9,6 +9,6 @@ outputDataSet = originalDataSet[["Profit"]]
 inputDataSet = originalDataSet[["R&D Spend"]]
 
 
-#By now, we plot models of one predictor. And works very well...
+# By now, we plot models of one predictor. And works very well...
 aModel = LinearRegressionModel(inputDataSet, outputDataSet)
 aModel.plot()
