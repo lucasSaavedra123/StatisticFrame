@@ -57,7 +57,7 @@ class TestModels(unittest.TestCase):
         with self.assertRaises(Exception) as context:
             self.insuranceModel.plot()
 
-        self.assertTrue("To plot, you should have 1 predictors" in context.exception)
+        self.assertTrue("To plot, you should have 1 predictors" in str(context.exception))
 
 
 if __name__ == '__main__':
