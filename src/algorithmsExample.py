@@ -8,6 +8,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
+# Some Algorithms plots
 originalDataSet = pd.read_csv("tests/insurance.csv")
 outputDataSet = originalDataSet[["charges"]]
 inputDataSet = originalDataSet.drop("charges", axis=1)

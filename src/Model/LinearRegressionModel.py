@@ -18,16 +18,16 @@ class LinearRegressionModel(Model):
         return self.__str__()
 
     def __str__(self):
-        return "Input: (%s), R2: %s" % (self.inputVariablesNames(), self.adjustedR2())
+        return "Linear Regression Model: (%s)->(%s)" % (self.inputVariablesNames(), self.outputVariableName())
 
     def __init__(self, inputDataSet, outputDataSet):
         self.inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
+        self.outputDataSet = outputDataSet
 
         if 'const' not in list(self.inputDataSet):
-            self.inputDataSet = sm.add_constant(self.inputDataSet)
-
-        self.outputDataSet = outputDataSet
-        self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
+            self.model = sm.OLS(self.outputDataSet, sm.add_constant(self.inputDataSet)).fit()
+        else:
+            self.model = sm.OLS(self.outputDataSet, self.inputDataSet).fit()
 
     def predict(self, input):
         realInput = {'const': 1}
@@ -35,15 +35,21 @@ class LinearRegressionModel(Model):
             value = input.get(variableName)
             if value is not None:
                 realInput[variableName] = value
-        return self.model.predict(pd.DataFrame(realInput))[0]
+        return self.model.predict(pd.DataFrame(realInput))
 
     def adjustedR2(self):
         return self.model.rsquared_adj
 
     def inputVariablesNames(self):
-        return list(self.inputDataSet.columns.drop('const'))
+        return list(self.inputDataSet.columns)
 
     def highestPValueVariableName(self):
         p_values = dict(self.model.pvalues)
         p_values.pop('const')
         return max(p_values.items(), key=operator.itemgetter(1))[0]
+
+    def outputVariableName(self):
+        return list(self.outputDataSet.columns)[0]
+
+    def quantityOfPredictors(self):
+        return len(self.inputVariablesNames())
