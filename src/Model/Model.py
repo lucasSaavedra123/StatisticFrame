@@ -4,10 +4,14 @@ import numpy as np
 
 class Model():
 
+    @staticmethod
+    def notValidPlottingMessage():
+        return "To plot, you should have 1 predictors"
+
     def plot(self):
 
         if self.quantityOfPredictors() > 1:
-            raise Exception("To plot, you should have 1 predictors")
+            raise Exception(Model.notValidPlottingMessage())
         else:
             plt.xlabel(self.inputVariablesNames()[0])
             plt.ylabel(self.outputVariableName()[0])

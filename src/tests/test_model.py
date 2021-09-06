@@ -52,6 +52,13 @@ class TestModels(unittest.TestCase):
         prediction = self.insuranceModel.predict(input)[0]
         self.assertEqual(round(prediction, 0), 27175)
 
+    def test_model_with_more_than_one_predictors_fails():
+
+        with self.assertRaises(Exception) as context:
+            self.insuranceModel.plot()
+
+        self.assertTrue("To plot, you should have 1 predictors" in context.exception)
+
 
 if __name__ == '__main__':
     unittest.main()
