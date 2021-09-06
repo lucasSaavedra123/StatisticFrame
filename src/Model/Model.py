@@ -14,7 +14,7 @@ class Model():
             plt.title(str(self))
             plt.scatter(self.inputDataSet[self.inputVariablesNames()], self.outputDataSet)
 
-            exampleInput = np.arange(self.inputDataSet.min()[0],self.inputDataSet.max()[0],1)
+            exampleInput = np.arange(self.inputDataSet.min()[0], self.inputDataSet.max()[0], 1)
             examplePrediction = self.predict({self.inputVariablesNames()[0]: list(exampleInput)})
             plt.plot(exampleInput, examplePrediction)
 
