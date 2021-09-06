@@ -7,10 +7,12 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
 
+
 originalDataSet = pd.read_csv("tests/insurance.csv")
 outputDataSet = originalDataSet[["charges"]]
 inputDataSet = originalDataSet.drop("charges", axis=1)
 inputDataSet = Utils.addDummyVariablesToDataSet(inputDataSet)
+
 input = {
     "age": [25],
     "sex_female": [0],
@@ -35,4 +37,4 @@ algorithms = [
 for algorithm in algorithms:
     algorithm.plot()
     model = Utils.pickModelWithHighestAdjustedR2(algorithm.result())
-    print(algorithm, "->", model.predict(input))
+    print(algorithm, "->", model.predict(input), "predicted with:", model)
