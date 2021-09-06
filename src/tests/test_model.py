@@ -21,16 +21,16 @@ class TestModels(unittest.TestCase):
         self.insuranceModel = LinearRegressionModel(inputDataSet, outputDataSet)
 
     def test_a_simple_linear_regression_model_predicts_two(self):
-        prediction = self.exampleOneLinearModel.predict({'X': [2]})
+        prediction = self.exampleOneLinearModel.predict({'X': [2]})[0]
         self.assertEqual(round(prediction), 2)
 
     def test_a_simple_linear_regression_model_predicts_fifty(self):
-        prediction = self.exampleOneLinearModel.predict({'X': [50]})
+        prediction = self.exampleOneLinearModel.predict({'X': [50]})[0]
         self.assertEqual(round(prediction), 50)
 
     def test_a_little_more_complex_linear_regression_model_predicts_zero_seventeen(self):
 
-        prediction = self.exampleTwoLinearModel.predict({'X': [8]})
+        prediction = self.exampleTwoLinearModel.predict({'X': [8]})[0]
         self.assertEqual(round(prediction, 1), 1.7)
 
     def test_predict_charges_for_northeast_person(self):
@@ -49,7 +49,7 @@ class TestModels(unittest.TestCase):
             "region_southwest": [0]
         }
 
-        prediction = self.insuranceModel.predict(input)
+        prediction = self.insuranceModel.predict(input)[0]
         self.assertEqual(round(prediction, 0), 27175)
 
 
