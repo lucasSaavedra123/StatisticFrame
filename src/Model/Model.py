@@ -20,6 +20,6 @@ class Model():
 
             exampleInput = np.arange(self.inputDataSet.min()[0], self.inputDataSet.max()[0], 1)
             examplePrediction = self.predict({self.inputVariablesNames()[0]: list(exampleInput)})
-            plt.plot(exampleInput, examplePrediction)
+            plt.plot(exampleInput, examplePrediction, color='red')
 
             plt.show()
