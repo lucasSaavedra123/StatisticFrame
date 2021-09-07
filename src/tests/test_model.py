@@ -75,6 +75,32 @@ class TestModels(unittest.TestCase):
         prediction = self.exampleTwoPolynomialModel.predict({'X': [-7]})[0]
         self.assertEqual(round(prediction), 49)
 
+    def test_a_simple_linear_regression_has_b0_equal_zero(self):
+        coefficientB0 = self.exampleOneLinearModel.coefficients().get('b0')
+        self.assertEqual(round(coefficientB0), 0)
+
+    def test_a_simple_linear_regression_has_bX_equal_one(self):
+        coefficientBX = self.exampleOneLinearModel.coefficients().get('b_X')
+        self.assertEqual(round(coefficientBX), 1)
+
+    def test_a_simple_polynomial_regression_has_bX_equal_zero(self):
+        coefficientB0 = self.exampleTwoPolynomialModel.coefficients().get('b0')
+        self.assertEqual(round(coefficientB0), 0)
+
+    def test_a_simple_polynomial_regression_has_bx_equal_one(self):
+        coefficientBX = self.exampleTwoPolynomialModel.coefficients().get('b_X')
+        self.assertEqual(round(coefficientBX), 1)
+
+    def test_coefficients_return_all_coefficients_values_model(self):
+        coefficients = self.insuranceModel.coefficents()
+        self.assertTrue(coefficients.get('b0') is not None)
+        self.assertTrue(coefficients.get('b_smoker_no') is not None)
+        self.assertTrue(coefficients.get('b_age') is not None)
+        self.assertTrue(coefficients.get('b_bmi') is not None)
+        self.assertTrue(coefficients.get('b_children') is not None)
+        self.assertTrue(coefficients.get('b_region_northeast') is not None)
+        self.assertTrue(coefficients.get('b_region_northwest') is not None)
+
 
 if __name__ == '__main__':
     unittest.main()
