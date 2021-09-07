@@ -14,9 +14,6 @@ class LinearRegressionModel(Model):
         outputDataSet = originalDataSet[[variableToPredictName]]
         return LinearRegressionModel(inputDataSet, outputDataSet)
 
-    def __repr__(self):
-        return self.__str__()
-
     def __str__(self):
         return "Linear Regression Model: (%s)->(%s)" % (self.inputVariablesNames(), self.outputVariableName())
 
@@ -37,9 +34,6 @@ class LinearRegressionModel(Model):
                 realInput[variableName] = value
         return self.model.predict(pd.DataFrame(realInput))
 
-    def adjustedR2(self):
-        return self.model.rsquared_adj
-
     def inputVariablesNames(self):
         return list(self.inputDataSet.columns)
 
@@ -50,6 +44,3 @@ class LinearRegressionModel(Model):
 
     def outputVariableName(self):
         return list(self.outputDataSet.columns)[0]
-
-    def quantityOfPredictors(self):
-        return len(self.inputVariablesNames())

@@ -18,5 +18,5 @@ outputDataSet = originalDataSet[["MEDV"]]
 inputDataSet = originalDataSet[["LSTAT"]]
 
 # We can do more...
-aModel = PolynomialRegressionModel(inputDataSet, outputDataSet, grade = 2)
+aModel = PolynomialRegressionModel(inputDataSet, outputDataSet, grade=2)
 aModel.plot()

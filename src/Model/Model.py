@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import operator
 
 
 class Model():
@@ -7,6 +8,9 @@ class Model():
     @staticmethod
     def notValidPlottingMessage():
         return "To plot, you should have 1 predictors"
+
+    def __repr__(self):
+        return self.__str__()
 
     def plot(self):
 
@@ -23,3 +27,17 @@ class Model():
             plt.plot(exampleInput, examplePrediction, color='red')
 
             plt.show()
+
+    def adjustedR2(self):
+        return self.model.rsquared_adj
+
+    def highestPValueVariableName(self):
+        p_values = dict(self.model.pvalues)
+        p_values.pop('const')
+        return max(p_values.items(), key=operator.itemgetter(1))[0]
+
+    def adjustedR2(self):
+        return self.model.rsquared_adj
+
+    def quantityOfPredictors(self):
+        return len(self.inputVariablesNames())
