@@ -39,3 +39,15 @@ class PolynomialRegressionModel(Model):
 
     def quantityOfPredictors(self):
         return 1
+
+    def coefficients(self):
+
+        coefficientsDictionary = {}
+
+        for index in range(self.grade+1):
+            if index == 0:
+                coefficientsDictionary['b0'] = self.model.params[index]
+            else:
+                coefficientsDictionary['b_'+self.inputVariablesNames()[0]+'_'+str(index)] = self.model.params[index]
+
+        return coefficientsDictionary

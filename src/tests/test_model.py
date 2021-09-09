@@ -4,6 +4,7 @@ import Utils
 import pandas as pd
 from Model.LinearRegressionModel import LinearRegressionModel
 from Model.PolynomialRegressionModel import PolynomialRegressionModel
+from Model.LogarithmicModel import LogarithmicModel
 from Model.Model import Model
 
 
@@ -23,6 +24,12 @@ class TestModels(unittest.TestCase):
         inputDataSet = inputDataSet[['smoker_no', 'age', 'bmi', 'children', 'region_northeast', 'region_northwest']]
 
         self.insuranceModel = LinearRegressionModel(inputDataSet, outputDataSet)
+
+        originalDataSet = pd.read_csv("Chwirut1.csv")
+        outputDataSet = originalDataSet[["ultrasonic_response"]]
+        inputDataSet = originalDataSet[["metal_distance"]]
+
+        self.deviceMeasuresModel = LogarithmicModel(inputDataSet, outputDataSet)
 
     def test_a_simple_linear_regression_model_predicts_two(self):
         prediction = self.exampleOneLinearModel.predict({'X': [2]})[0]
@@ -75,6 +82,14 @@ class TestModels(unittest.TestCase):
         prediction = self.exampleTwoPolynomialModel.predict({'X': [-7]})[0]
         self.assertEqual(round(prediction), 49)
 
+    def test_a_logarithmic_regression_predicts_nearly_twenty_one(self):
+        prediction = self.deviceMeasuresModel.predict({'metal_distance': [2]})[0]
+        self.assertEqual(round(prediction), 22)
+
+    def test_a_logarithmic_regression_predicts_forty_six(self):
+        prediction = self.deviceMeasuresModel.predict({'metal_distance': [1]})[0]
+        self.assertEqual(round(prediction), 46)
+
     def test_a_simple_linear_regression_has_b0_equal_zero(self):
         coefficientB0 = self.exampleOneLinearModel.coefficients().get('b0')
         self.assertEqual(round(coefficientB0), 0)
@@ -83,16 +98,28 @@ class TestModels(unittest.TestCase):
         coefficientBX = self.exampleOneLinearModel.coefficients().get('b_X')
         self.assertEqual(round(coefficientBX), 1)
 
-    def test_a_simple_polynomial_regression_has_bX_equal_zero(self):
+    def test_a_linear_regression_has_b0_equal_to_zero_dot_one(self):
+        coefficientB0 = self.exampleTwoLinearModel.coefficients().get('b0')
+        self.assertEqual(round(coefficientB0, 2), 0.1)
+
+    def test_a_linear_regression_has_bX_equal_to_zero_dot_two(self):
+        coefficientBX = self.exampleTwoLinearModel.coefficients().get('b_X')
+        self.assertEqual(round(coefficientBX, 2), 0.2)
+
+    def test_a_polynomial_regression_has_b0_equal_to(self):
         coefficientB0 = self.exampleTwoPolynomialModel.coefficients().get('b0')
         self.assertEqual(round(coefficientB0), 0)
 
-    def test_a_simple_polynomial_regression_has_bx_equal_one(self):
-        coefficientBX = self.exampleTwoPolynomialModel.coefficients().get('b_X')
-        self.assertEqual(round(coefficientBX), 1)
+    def test_a_polynomial_regression_has_bX1_equal_to_zero_dot_two(self):
+        coefficientBX1 = self.exampleTwoPolynomialModel.coefficients().get('b_X_1')
+        self.assertEqual(round(coefficientBX1), 0)
+
+    def test_a_polynomial_regression_has_bX2_equal_to_zero_dot_two(self):
+        coefficientBX2 = self.exampleTwoPolynomialModel.coefficients().get('b_X_2')
+        self.assertEqual(round(coefficientBX2), 1)
 
     def test_coefficients_return_all_coefficients_values_model(self):
-        coefficients = self.insuranceModel.coefficents()
+        coefficients = self.insuranceModel.coefficients()
         self.assertTrue(coefficients.get('b0') is not None)
         self.assertTrue(coefficients.get('b_smoker_no') is not None)
         self.assertTrue(coefficients.get('b_age') is not None)
@@ -100,6 +127,11 @@ class TestModels(unittest.TestCase):
         self.assertTrue(coefficients.get('b_children') is not None)
         self.assertTrue(coefficients.get('b_region_northeast') is not None)
         self.assertTrue(coefficients.get('b_region_northwest') is not None)
+
+    def test_coefficients_return_all_coefficients_values_model(self):
+        coefficients = self.deviceMeasuresModel.coefficients()
+        self.assertEquals(round(coefficients.get('b_multiplicator')), 46)
+        self.assertEquals(round(coefficients.get('b_exponent'), 2), -1.08)
 
 
 if __name__ == '__main__':

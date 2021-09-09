@@ -1,3 +1,4 @@
+from Model.LogarithmicModel import LogarithmicModel
 from Model.LinearRegressionModel import LinearRegressionModel
 from Model.PolynomialRegressionModel import PolynomialRegressionModel
 import pandas as pd
@@ -19,4 +20,13 @@ inputDataSet = originalDataSet[["LSTAT"]]
 
 # We can do more...
 aModel = PolynomialRegressionModel(inputDataSet, outputDataSet, grade=2)
+aModel.plot()
+
+originalDataSet = pd.read_csv("tests/Chwirut1.csv")
+outputDataSet = originalDataSet[["ultrasonic_response"]]
+inputDataSet = originalDataSet[["metal_distance"]]
+
+# We can do more...
+aModel = LogarithmicModel(inputDataSet, outputDataSet)
+aModel.predict({"metal_distance": [10]})
 aModel.plot()

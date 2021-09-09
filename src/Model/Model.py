@@ -41,3 +41,16 @@ class Model():
 
     def quantityOfPredictors(self):
         return len(self.inputVariablesNames())
+
+    def coefficients(self):
+
+        coefficientsDictionary = {}
+        listOfCoefficientsSuffixes = ['0'] + self.inputVariablesNames()
+
+        for index in range(len(listOfCoefficientsSuffixes)):
+            if index == 0:
+                coefficientsDictionary['b0'] = self.model.params[index]
+            else:
+                coefficientsDictionary['b_'+listOfCoefficientsSuffixes[index]] = self.model.params[index]
+
+        return coefficientsDictionary
