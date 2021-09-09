@@ -26,7 +26,6 @@ originalDataSet = pd.read_csv("tests/Chwirut1.csv")
 outputDataSet = originalDataSet[["ultrasonic_response"]]
 inputDataSet = originalDataSet[["metal_distance"]]
 
-# We can do more...
+# Logarithmic models too? Yes...
 aModel = LogarithmicModel(inputDataSet, outputDataSet)
-aModel.predict({"metal_distance": [10]})
 aModel.plot()
