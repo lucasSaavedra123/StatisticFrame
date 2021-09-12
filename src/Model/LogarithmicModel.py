@@ -4,7 +4,6 @@ import statsmodels.api as sm
 import Utils
 import numpy as np
 import operator
-import matplotlib.pyplot as plt
 
 
 class LogarithmicModel(Model):
