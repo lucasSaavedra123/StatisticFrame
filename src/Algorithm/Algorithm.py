@@ -1,3 +1,4 @@
+import pathmagic
 import Utils
 import matplotlib.pyplot as plt
 import numpy as np

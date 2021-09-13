@@ -1,3 +1,4 @@
+import pathmagic
 from Algorithm.Algorithm import Algorithm
 from Model.LinearRegressionModel import LinearRegressionModel
 
