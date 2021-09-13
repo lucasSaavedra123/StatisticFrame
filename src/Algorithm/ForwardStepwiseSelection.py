@@ -1,6 +1,6 @@
-import Utils
-from Algorithm.Algorithm import Algorithm
-from Model.LinearRegressionModel import LinearRegressionModel
+import statisticframe.Utils.Utils as Utils
+from statisticframe.Algorithm.Algorithm import Algorithm
+from statisticframe.Model.LinearRegressionModel import LinearRegressionModel
 
 
 class ForwardStepwiseSelection(Algorithm):

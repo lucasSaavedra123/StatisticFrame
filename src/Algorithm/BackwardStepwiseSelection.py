@@ -1,6 +1,6 @@
-from Algorithm.Algorithm import Algorithm
-from Model.LinearRegressionModel import LinearRegressionModel
-import Utils
+from statisticframe.Algorithm.Algorithm import Algorithm
+from statisticframe.Model.LinearRegressionModel import LinearRegressionModel
+import statisticframe.Utils.Utils as Utils
 
 
 class BackwardStepwiseSelection(Algorithm):

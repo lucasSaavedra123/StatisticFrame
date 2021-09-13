@@ -1,7 +1,7 @@
-from Model.Model import Model
+from statisticframe.Model.Model import Model
 import pandas as pd
 import statsmodels.api as sm
-import Utils
+import statisticframe.Utils.Utils as Utils
 import operator
 
 

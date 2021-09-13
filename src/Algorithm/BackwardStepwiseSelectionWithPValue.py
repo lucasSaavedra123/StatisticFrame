@@ -1,5 +1,5 @@
-from Algorithm.Algorithm import Algorithm
-from Model.LinearRegressionModel import LinearRegressionModel
+from statisticframe.Algorithm.Algorithm import Algorithm
+from statisticframe.Model.LinearRegressionModel import LinearRegressionModel
 
 
 class BackwardStepwiseSelectionWithPValue(Algorithm):
