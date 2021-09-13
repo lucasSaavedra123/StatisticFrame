@@ -1,8 +1,9 @@
+from statisticframe import *
 from Algorithm.ForwardStepwiseSelection import ForwardStepwiseSelection
 from Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
 from Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
 from Algorithm.BestModelSelection import BestModelSelection
-import Utils
+import statisticframe.Utils as Utils
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")

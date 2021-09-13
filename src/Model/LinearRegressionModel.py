@@ -1,4 +1,3 @@
-import pathmagic
 from Model.Model import Model
 import pandas as pd
 import statsmodels.api as sm
