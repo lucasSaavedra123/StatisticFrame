@@ -14,6 +14,5 @@ setuptools.setup(
     project_urls={
         "StatisticFrame repository": "https://github.com/lucasSaavedra123/StatisticFrame"
     },
-    packages=['src'],
-    install_requires=['requests'],
+    packages=['src']
 )
