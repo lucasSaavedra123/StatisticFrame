@@ -13,6 +13,11 @@ First, we need to install all required libraries. To do that, type:
 
     pip install -r requirements.txt
 
+Finally, write:
+
+    pip install git+https://github.com/lucasSaavedra123/StatisticFrame.git
+
+
 Dockerization is a great idea. We could develop an API to be worldwide used for cloud services and stuff like that. But by now, it's used in this way.
 
 # FAQ

@@ -6,7 +6,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-
 originalDataSet = pd.read_csv("tests/50_Startups.csv")
 outputDataSet = originalDataSet[["Profit"]]
 inputDataSet = originalDataSet[["R&D Spend"]]

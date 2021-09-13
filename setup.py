@@ -11,7 +11,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/lucasSaavedra123/StatisticFrame',
-    project_urls = {
+    project_urls={
         "StatisticFrame repository": "https://github.com/lucasSaavedra123/StatisticFrame"
     },
     packages=['src'],
