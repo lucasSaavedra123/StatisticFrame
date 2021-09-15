@@ -8,7 +8,7 @@ StatisticFrame is a set of classes and tools that use most used machine learning
 
 # Requirements
 
-What we need? Just Python 3.
+What do we need? Just Python 3.
 First, we need to install all required libraries. To do that, type:
 
     pip install -r requirements.txt
