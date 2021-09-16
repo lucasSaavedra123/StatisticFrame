@@ -43,7 +43,7 @@ Do you want to contribute? Follow the next steps:
 3. **Work on that branch**.
 4. **Make a Pull request**: Once your job is finished, make a pull request and statisticframe staff will review it. If everthing is fine, it will be merged into master. Otherwise, changes will be requested.
 
-Please, do testing. The pull will not be approved unless tests are added. However, if testing is not required, it could be merged into master, but only if it is properly justified.
+Please, work with any methodology that uses unit tests. The pull will not be approved unless tests are added. However, if testing is not required, it could be merged into master, but only if it is properly justified.
 
 # Thanks to
 <p align="center">
