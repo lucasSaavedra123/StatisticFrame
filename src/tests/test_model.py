@@ -7,6 +7,7 @@ from statisticframe.Model.LogarithmicModel import LogarithmicModel
 from statisticframe.Model.Model import Model
 import statisticframe.Utils.Utils as Utils
 
+
 class TestModels(unittest.TestCase):
 
     @classmethod
