@@ -35,7 +35,15 @@ Easy, just type:
 
 
 # Contribution
-To contribute, create a branch for yourself and then submit a pull request. Please, do testing. The pull will not be approved unless tests are added. However, if testing is not required, it could be merged into master, but only if it is properly justified.
+
+Do you want to contribute? Follow the next steps:
+
+1. **Create an issue**: If you have an idea to add in statisticframe, write an issue in GitHub and describe it (this is optional). In case you work on your own issue, assign it to you. If you can't do it and you want to give the idea, don't worry, just create the issue and someone will be working on it.
+2. **Create a branch**: If you are going to work with an issue, create a branch with the following format: `yourUserName-issue-issueNumber`. 
+3. **Work on that branch**.
+4. **Make a Pull request**: Once your job is finished, make a pull request and statisticframe staff will review it. If everthing is fine, it will be merged into master. Otherwise, changes will be requested.
+
+Please, do testing. The pull will not be approved unless tests are added. However, if testing is not required, it could be merged into master, but only if it is properly justified.
 
 # Thanks to
 <p align="center">
