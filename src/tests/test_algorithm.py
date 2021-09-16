@@ -1,9 +1,9 @@
 import pathmagic
 import unittest
-from Algorithm.ForwardStepwiseSelection import ForwardStepwiseSelection
-from Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
-from Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
-import Utils
+from statisticframe.Algorithm.ForwardStepwiseSelection import ForwardStepwiseSelection
+from statisticframe.Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
+from statisticframe.Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
+import statisticframe.Utils.Utils as Utils
 import pandas as pd
 
 
