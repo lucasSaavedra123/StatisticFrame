@@ -1,12 +1,11 @@
 import pathmagic
 import unittest
-import Utils
 import pandas as pd
-from Model.LinearRegressionModel import LinearRegressionModel
-from Model.PolynomialRegressionModel import PolynomialRegressionModel
-from Model.LogarithmicModel import LogarithmicModel
-from Model.Model import Model
-
+from statisticframe.Model.LinearRegressionModel import LinearRegressionModel
+from statisticframe.Model.PolynomialRegressionModel import PolynomialRegressionModel
+from statisticframe.Model.LogarithmicModel import LogarithmicModel
+from statisticframe.Model.Model import Model
+import statisticframe.Utils as Utils
 
 class TestModels(unittest.TestCase):
 
