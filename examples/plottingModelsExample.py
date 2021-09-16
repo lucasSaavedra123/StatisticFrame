@@ -1,6 +1,6 @@
-from Model.LogarithmicModel import LogarithmicModel
-from Model.LinearRegressionModel import LinearRegressionModel
-from Model.PolynomialRegressionModel import PolynomialRegressionModel
+from statisticframe.Model.LogarithmicModel import LogarithmicModel
+from statisticframe.Model.LinearRegressionModel import LinearRegressionModel
+from statisticframe.Model.PolynomialRegressionModel import PolynomialRegressionModel
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
