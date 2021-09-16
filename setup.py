@@ -14,5 +14,5 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url='https://github.com/lucasSaavedra123/StatisticFrame',
     project_urls={"StatisticFrame repository": "https://github.com/lucasSaavedra123/StatisticFrame"},
-    packages=["statisticframe.Utils","statisticframe.Algorithm", "statisticframe.Model"]
+    packages=["statisticframe.Utils", "statisticframe.Algorithm", "statisticframe.Model"]
 )
