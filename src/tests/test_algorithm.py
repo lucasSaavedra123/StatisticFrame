@@ -3,7 +3,7 @@ import unittest
 from statisticframe.Algorithm.ForwardStepwiseSelection import ForwardStepwiseSelection
 from statisticframe.Algorithm.BackwardStepwiseSelection import BackwardStepwiseSelection
 from statisticframe.Algorithm.BackwardStepwiseSelectionWithPValue import BackwardStepwiseSelectionWithPValue
-import statisticframe.Utils as Utils
+import statisticframe.Utils.Utils as Utils
 import pandas as pd
 
 

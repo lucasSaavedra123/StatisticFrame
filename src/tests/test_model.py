@@ -5,7 +5,7 @@ from statisticframe.Model.LinearRegressionModel import LinearRegressionModel
 from statisticframe.Model.PolynomialRegressionModel import PolynomialRegressionModel
 from statisticframe.Model.LogarithmicModel import LogarithmicModel
 from statisticframe.Model.Model import Model
-import statisticframe.Utils as Utils
+import statisticframe.Utils.Utils as Utils
 
 class TestModels(unittest.TestCase):
 
