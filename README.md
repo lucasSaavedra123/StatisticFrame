@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master.svg?style=shield)](https://circleci.com/gh/lucasSaavedra123/StatisticFrame/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/lucasSaavedra123/StatisticFrame/badge.svg?branch=master)](https://coveralls.io/github/lucasSaavedra123/StatisticFrame?branch=master)
+[![build-n-test](https://github.com/lucasSaavedra123/StatisticFrame/actions/workflows/main.yml/badge.svg)](https://github.com/lucasSaavedra123/StatisticFrame/actions/workflows/main.yml)
 
 # statisticFrame
 <p align="center">
