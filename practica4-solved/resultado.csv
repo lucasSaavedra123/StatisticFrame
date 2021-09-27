@@ -1,0 +1,3 @@
+age,BMI,cigsPerDay,diaBP,glucose,heartRate,sysBP,totChol,prediction
+45,26,0,110,85,85,125,205,1
+43,28,0,130,88,90,155,250,1
